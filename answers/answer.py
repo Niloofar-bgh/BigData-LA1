@@ -83,7 +83,7 @@ def count(filename):
     Test file: tests/test_count.py
     Note: The return value should be an integer
     '''
-    
+    print('test')    
     # ADD YOUR CODE HERE
     raise ExceptionException("Not implemented yet")
 
