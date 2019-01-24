@@ -440,6 +440,7 @@ def intersection_dask(filename1, filename2):
     Note: The return value should be a CSV string.
           Have a look at the file *tests/intersection.txt* to get the exact return format.
     '''
+    print("platypus")
 
     # ADD YOUR CODE HERE
     raise Exception("Not implemented yet")
