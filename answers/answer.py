@@ -84,7 +84,18 @@ def count(filename):
     Note: The return value should be an integer
     '''
     print('test')    
-    # ADD YOUR CODE HERE
+    # ADD YOUR CODE HER
+    data = []
+    with open (filename, 'r') as file: 
+        lines = file.readlines()
+        for l in lines:
+            lread = l.split(',')[0]
+            data.append(lread)
+
+    data = np.delete(data,0)
+    data = np.asarray([data])
+
+    return len(data[0])
     raise ExceptionException("Not implemented yet")
 
 def parks(filename):
