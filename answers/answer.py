@@ -85,6 +85,7 @@ def count(filename):
     '''
     print('test')    
     # ADD YOUR CODE HER
+    import numpy as np
     data = []
     with open (filename, 'r') as file: 
         lines = file.readlines()
