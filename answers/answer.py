@@ -110,7 +110,7 @@ def parks(filename):
     # ADD YOUR CODE HERE
     import pandas as pd
     data = pd.read_csv( filename , usecols=['Nom_parc'])
-    result = list(data.groupby('Nom_parc').size())
+    result =sum(list(data.groupby('Nom_parc').size()))
     return result
 	
     raise Exception("Not implemented yet")
