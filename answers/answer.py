@@ -125,12 +125,31 @@ def uniq_parks(filename):
     '''
 
     # ADD YOUR CODE HERE
+    #from collections import Counter
+    #test = pd.read_csv(filename)
+    #storage = (list( Counter(test ['Nom_parc']).keys()))
+    #storage.pop(0)
+    #result = sorted(storage)
+    #return print(*result,sep='\n'
+
     from collections import Counter
-    test = pd.read_csv(filename)
+    s = []
+    test = pd.read_csv('frenepublicinjection2016.csv')
     storage = (list( Counter(test ['Nom_parc']).keys()))
     storage.pop(0)
-    result = sorted(storage)
-    return print(*result,sep='\n')
+    for line in storage:
+       l = line.split(',')
+#     print (l[0])
+       s.append(l[0])
+    s=sorted(s)
+# s = np.array(s).reshape(len(s), 1)
+# storage.pop(0)
+# result = sorted(storage)
+# result
+# print(*result,sep='\n')
+# print('\n'.join(result))
+# s= '\n'.join(result)
+    return print(*s,sep='\n')
     raise Exception("Not implemented yet")
 
 def uniq_parks_counts(filename):
