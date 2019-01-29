@@ -125,6 +125,11 @@ def uniq_parks(filename):
     '''
 
     # ADD YOUR CODE HERE
+    from collections import Counter
+    storage = (list( Counter(test ['Nom_parc'].values.tolist()).keys()))
+    storage.pop(0)
+    result = sorted(storage)
+    return result
     raise Exception("Not implemented yet")
 
 def uniq_parks_counts(filename):
