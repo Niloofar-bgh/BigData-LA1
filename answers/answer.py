@@ -144,7 +144,25 @@ def uniq_parks_counts(filename):
     '''
 
     # ADD YOUR CODE HERE
+    data = (pd.read_csv(filename))
+    columns = data.columns
+    park = data.Nom_parc.tolist()
+    park = [x for x in park if str(x) != 'nan']
+    d = {}
+    park_count = []
+    for item in park:
+        if item in d:
+            d[item] = d.get(item)+1
+        else:
+            d[item] = 1
+
+    for k,v in d.items():
+        park_count. append(str(k)+','+str(v))
+    
+    result = sorted(park_count)
+    return result
     raise Exception("Not implemented yet")
+
 
 def frequent_parks_count(filename):
     '''
