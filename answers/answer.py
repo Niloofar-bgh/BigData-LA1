@@ -128,8 +128,8 @@ def uniq_parks(filename):
     test = pd.read_csv(filename)
     storage = (list( Counter(test ['Nom_parc']).keys()))
     storage.pop(0)
-    result = sorted(storage)
-    return print(*result,sep='\n')
+    storage =  sorted(storage)
+    return storage
     raise Exception("Not implemented yet")
 
 def uniq_parks_counts(filename):
