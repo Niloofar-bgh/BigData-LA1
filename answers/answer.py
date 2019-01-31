@@ -160,10 +160,7 @@ def uniq_parks_counts(filename):
         else:
             d[item] = 1
 
-    for k,v in d.items():
-        park_count. append(str(k)+','+str(v))
-    
-    result = sorted(park_count)
+    result = ["{0},{1}".format(k, d[k]) for k in sorted(d.keys())]    
     result = ('\n'.join(result)+'\n')
     return result
     raise Exception("Not implemented yet")
