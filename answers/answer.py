@@ -200,7 +200,7 @@ def frequent_parks_count(filename):
     park = [x for x in park if str(x) != 'nan']
     count = Counter(park)
     park_top10 = (count.most_common(10))
-    park_top10 = ('\n'.join([ str(elem[0])+": "+str(elem[1]) for elem in park_top10 ])+'\n')
+    park_top10 = ('\n'.join([ str(elem[0])+","+str(elem[1]) for elem in park_top10 ])+'\n')
     return park_top10
     raise Exception("Not implemented yet")
 
