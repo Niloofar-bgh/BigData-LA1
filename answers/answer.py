@@ -130,8 +130,8 @@ def uniq_parks(filename):
     storage = (list( Counter(test ['Nom_parc']).keys()))
     storage.pop(0)
     storage =  sorted(storage)
-    #storage = '\n'.join(storage)+'\n'
-    return print(*storage,sep='\n') 
+    storage = '\n'.join(storage)+'\n'
+    return storage
     raise Exception("Not implemented yet")
 
 def uniq_parks_counts(filename):
