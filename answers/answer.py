@@ -181,6 +181,17 @@ def frequent_parks_count(filename):
     '''
 
     # ADD YOUR CODE HERE
+   # from collections import Counter
+   # import pandas as pd
+   # data = (pd.read_csv(filename))
+   # columns = data.columns
+   # park = data.Nom_parc.tolist()
+   # park = [x for x in park if str(x) != 'nan']
+   # count = Counter(park)
+   # park_top10 = (count.most_common(10))
+   # park_top10 = [i[0] for i in park_top10]
+   # park_top10 = ('\n'.join(park_top10)+'\n')
+   # return park_top10
     from collections import Counter
     import pandas as pd
     data = (pd.read_csv(filename))
@@ -189,8 +200,7 @@ def frequent_parks_count(filename):
     park = [x for x in park if str(x) != 'nan']
     count = Counter(park)
     park_top10 = (count.most_common(10))
-    park_top10 = [i[0] for i in park_top10]
-    park_top10 = ('\n'.join(park_top10)+'\n')
+    park_top10 = ('\n'.join([ str(elem[0])+": "+str(elem[1]) for elem in park_top10 ])+'\n')
     return park_top10
     raise Exception("Not implemented yet")
 
