@@ -145,7 +145,9 @@ def uniq_parks_counts(filename):
           Have a look at the file *tests/list_parks_count.txt* to get the exact return format.
     '''
 
+    
     # ADD YOUR CODE HERE
+    import pandas as pd
     data = (pd.read_csv(filename))
     columns = data.columns
     park = data.Nom_parc.tolist()
@@ -162,6 +164,7 @@ def uniq_parks_counts(filename):
         park_count. append(str(k)+','+str(v))
     
     result = sorted(park_count)
+    result = ('\n'.join(result)+'\n')
     return result
     raise Exception("Not implemented yet")
 
