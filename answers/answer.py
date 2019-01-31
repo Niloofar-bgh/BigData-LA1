@@ -124,13 +124,14 @@ def uniq_parks(filename):
     '''
 
     # ADD YOUR CODE HERE
+    import pandas as pd
     from collections import Counter
     test = pd.read_csv(filename)
     storage = (list( Counter(test ['Nom_parc']).keys()))
     storage.pop(0)
     storage =  sorted(storage)
-    storage = '\n'.join(storage)+'\n'
-    return storage 
+    #storage = '\n'.join(storage)+'\n'
+    return print(*storage,sep='\n') 
     raise Exception("Not implemented yet")
 
 def uniq_parks_counts(filename):
