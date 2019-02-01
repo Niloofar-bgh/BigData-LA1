@@ -222,7 +222,7 @@ def intersection(filename1, filename2):
     data_16.pop(0)
     data_15.pop(0)
 
-    park_total = list(set(park_15 + park_16))  
+    park_total = list(set(data_15 + data_16))  
 
     park_total = sorted(park_total)
     park_total.pop(2)
