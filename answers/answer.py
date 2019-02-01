@@ -210,6 +210,25 @@ def intersection(filename1, filename2):
     Note: The return value should be a CSV string.
           Have a look at the file *tests/intersection.txt* to get the exact return format.
     '''
+    from collections import Counter
+    import pandas as pd
+
+    data_16 = (pd.read_csv(filename1))
+    data_15 = (pd.read_csv(filename2))
+
+    data_16 = list( Counter(data_16['Nom_parc']).keys())
+    data_15 = list( Counter(data_15['Nom_parc']).keys())
+
+    data_16.pop(0)
+    data_15.pop(0)
+
+    park_total = list(set(park_15 + park_16))  
+
+    park_total = sorted(park_total)
+    park_total.pop(2)
+
+    park_total = ('\n'.join(park_total)+'\n')
+    return park_total
 
     # ADD YOUR CODE HERE
     raise Exception("Not implemented yet")
