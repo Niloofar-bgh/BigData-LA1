@@ -264,7 +264,7 @@ def count_rdd(filename):
     sc = SparkContext("local", "Simple App")
     sql_context = SQLContext(sc)
 
-    df = (sql_context.read.format('com.databricks.spark.csv').option("header", "true").load("frenepublicinjection2016.csv") ).rdd 
+    df = (sql_context.read.format('com.databricks.spark.csv').option("header", "true").load(filename)).rdd 
     return(df.count())
 
     raise Exception("Not implemented yet")
