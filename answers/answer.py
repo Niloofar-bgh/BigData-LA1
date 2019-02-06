@@ -256,6 +256,17 @@ def count_rdd(filename):
     spark = init_spark()
     
     # ADD YOUR CODE HERE
+    from pyspark import SparkContext
+    from pyspark import SparkConf
+    from pyspark.sql import SQLContext
+
+
+    sc = SparkContext("local", "Simple App")
+    sql_context = SQLContext(sc)
+
+    df = (sql_context.read.format('com.databricks.spark.csv').option("header", "true").load("frenepublicinjection2016.csv") ).rdd 
+    return(df.count())
+
     raise Exception("Not implemented yet")
 
 def parks_rdd(filename):
