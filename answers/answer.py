@@ -280,6 +280,18 @@ def parks_rdd(filename):
     spark = init_spark()
     
     # ADD YOUR CODE HERE
+    from pyspark import SparkContext
+    from pyspark import SparkConf
+    from pyspark.sql import SQLContext
+
+    sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]"))
+    sc = SparkContext("local", "Simple App")
+    sql_context = SQLContext(sc)
+
+    rdd = (sql_context.read.format('com.databricks.spark.csv').option("header", "true").load(filename)).rdd 
+    numPark = rdd.map(lambda x: x[6])
+    numPark = numPark.filter(lambda x: x is not None).filter(lambda x: x != "")
+    return numPark.count()
     raise Exception("Not implemented yet")
 
 def uniq_parks_rdd(filename):
