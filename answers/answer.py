@@ -261,7 +261,7 @@ def count_rdd(filename):
     from pyspark.sql import SQLContext
 
 
-    sc = SparkContext("local", "Simple App")
+    sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]"))
     sql_context = SQLContext(sc)
 
     df = (sql_context.read.format('com.databricks.spark.csv').option("header", "true").load(filename)).rdd 
