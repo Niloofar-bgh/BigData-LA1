@@ -316,7 +316,7 @@ def uniq_parks_rdd(filename):
     numPark = numPark.filter(lambda x: x is not None).filter(lambda x: x != "")
     numPark = numPark.map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
     numPark = numPark.sortByKey().map(lambda x: x[0])
-    return toCSVline(numPark)
+    return toCSVLine(numPark)
     raise Exception("Not implemented yet")
 
 def uniq_parks_counts_rdd(filename):
