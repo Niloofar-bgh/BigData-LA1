@@ -336,8 +336,8 @@ def uniq_parks_counts_rdd(filename):
     from pyspark import SparkContext
     from pyspark import SparkConf
     from pyspark.sql import SQLContext
-
-
+    import pyspark 
+    
     sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]"))
     sql_context = SQLContext(sc)
     rdd = (sql_context.read.format('com.databricks.spark.csv').option("header", "true").load(filename)).rdd
