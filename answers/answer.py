@@ -374,7 +374,7 @@ def frequent_parks_count_rdd(filename):
     numPark = numPark.map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
     numParkCount = numPark.sortByKey()
     sortedNumPark = numParkCount.takeOrdered(10, lambda x: -x[1])
-    sortedNumPark = ('\n'.join([str(elem[0])+", "+str(elem[1])for elem in sortedNumPark])+'\n')\
+    sortedNumPark = ('\n'.join([str(elem[0])+", "+str(elem[1])for elem in sortedNumPark])+'\n')
     return sortedNumPark
     raise Exception("Not implemented yet")
 
