@@ -284,7 +284,7 @@ def parks_rdd(filename):
     from pyspark import SparkConf
     from pyspark.sql import SQLContext
 
-    sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]")
+    sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]"))
     sql_context = SQLContext(sc)
 
     rdd = (sql_context.read.format('com.databricks.spark.csv').option("header", "true").load(filename)).rdd 
