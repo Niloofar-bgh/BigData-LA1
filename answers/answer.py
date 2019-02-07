@@ -311,7 +311,7 @@ def uniq_parks_rdd(filename):
 
     sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]"))
     sql_context = SQLContext(sc)
-    rdd = (sql_context.read.format('com.databricks.spark.csv').option("header", "true").load("frenepublicinjection2016.csv")).rdd 
+    rdd = (sql_context.read.format('com.databricks.spark.csv').option("header", "true").load(filename)).rdd 
     numPark = rdd.map(lambda x: x[6])
     numPark = numPark.filter(lambda x: x is not None).filter(lambda x: x != "")
     numPark = numPark.map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
