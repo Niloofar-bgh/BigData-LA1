@@ -305,6 +305,18 @@ def uniq_parks_rdd(filename):
     spark = init_spark()
     
     # ADD YOUR CODE HERE
+    from pyspark import SparkContext
+    from pyspark import SparkConf
+    from pyspark.sql import SQLContext
+
+    sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]"))
+    sql_context = SQLContext(sc)
+    rdd = (sql_context.read.format('com.databricks.spark.csv').option("header", "true").load("frenepublicinjection2016.csv")).rdd 
+    numPark = rdd.map(lambda x: x[6])
+    numPark = numPark.filter(lambda x: x is not None).filter(lambda x: x != "")
+    numPark = numPark.map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
+    numPark = numPark.sortByKey().map(lambda x: x[0])
+    return toCSVline(numPark)
     raise Exception("Not implemented yet")
 
 def uniq_parks_counts_rdd(filename):
