@@ -333,6 +333,18 @@ def uniq_parks_counts_rdd(filename):
     spark = init_spark()
     
     # ADD YOUR CODE HERE
+    from pyspark import SparkContext
+    from pyspark import SparkConf
+    from pyspark.sql import SQLContext
+
+    sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]"))
+    sql_context = SQLContext(sc)
+    rdd = (sql_context.read.format('com.databricks.spark.csv').option("header", "true").load(filename)).rdd
+    numPark = rdd.map(lambda x: x[6])
+    numPark = numPark.filter(lambda x: x is not None).filter(lambda x: x != "")
+    numPark = numPark.map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
+    numParkCount = numPark.sortByKey()
+    return toCSVLine(numParkCount)
     raise Exception("Not implemented yet")
 
 def frequent_parks_count_rdd(filename):
