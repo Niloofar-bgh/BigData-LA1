@@ -362,6 +362,20 @@ def frequent_parks_count_rdd(filename):
     spark = init_spark()
     
     # ADD YOUR CODE HERE
+    from pyspark import SparkContext
+    from pyspark import SparkConf
+    from pyspark.sql import SQLContext
+
+    sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]"))
+    sql_context = SQLContext(sc)
+    rdd = (sql_context.read.format('com.databricks.spark.csv').option("header", "true").load(filename)).rdd
+    numPark = rdd.map(lambda x: x[6])
+    numPark = numPark.filter(lambda x: x is not None).filter(lambda x: x != "")
+    numPark = numPark.map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
+    numParkCount = numPark.sortByKey()
+    sortedNumPark = numParkCount.takeOrdered(10, lambda x: -x[1])
+    sortedNumPark = ('\n'.join([str(elem[0])+", "+str(elem[1])for elem in sortedNumPark])+'\n')\
+    return sortedNumPark
     raise Exception("Not implemented yet")
 
 def intersection_rdd(filename1, filename2):
