@@ -443,6 +443,10 @@ def count_df(filename):
     spark = init_spark()
     
     # ADD YOUR CODE HERE
+    from pyspark.sql import SparkSession
+    spark = SparkSession._create_shell_session()
+    df = spark.read.csv(filename , header=True, mode="DROPMALFORMED")
+    return df.count()
     raise Exception("Not implemented yet")
 
 def parks_df(filename):
