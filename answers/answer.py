@@ -389,7 +389,28 @@ def intersection_rdd(filename1, filename2):
 
     spark = init_spark()
     
-    # ADD YOUR CODE HERE
+    # ADD YOUR CODE HERE 
+    from pyspark import SparkContext
+    from pyspark import SparkConf
+    from pyspark.sql import SQLContext
+   
+    sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]"))
+    sql_context = SQLContext(sc)
+
+    rdd_1 = (sql_context.read.format('com.databricks.spark.csv').option("header", "true")\
+           .load("frenepublicinjection2016.csv")).rdd 
+    numPark_1 = rdd_1.map(lambda x: x[6])
+    numPark_1 = numPark_1.filter(lambda x: x is not None).filter(lambda x: x != "")
+
+    rdd_2 = (sql_context.read.format('com.databricks.spark.csv').option("header", "true")\
+           .load("frenepublicinjection2015.csv")).rdd 
+    numPark_2 = rdd_2.map(lambda x: x[6])
+    numPark_2 = numPark_2.filter(lambda x: x is not None).filter(lambda x: x != "")
+
+    intersection = sorted(numPark_1.intersection(numPark_2).collect())
+    intersection = ('\n'.join(intersection)+'\n')
+    
+    return intersection
     raise Exception("Not implemented yet")
 
 
