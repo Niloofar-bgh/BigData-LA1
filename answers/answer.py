@@ -460,6 +460,14 @@ def parks_df(filename):
     spark = init_spark()
     
     # ADD YOUR CODE HERE
+    from pyspark.sql import SparkSession
+
+    spark = SparkSession._create_shell_session()
+    df = spark.read.csv(filename , header=True, mode="DROPMALFORMED")
+    numPark_df = df.select("Nom_parc")
+    numPark_df = numPark_df.where("Nom_parc != ''").count()
+
+    return numPark_df
     raise Exception("Not implemented yet")
 
 def uniq_parks_df(filename):
