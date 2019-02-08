@@ -398,12 +398,12 @@ def intersection_rdd(filename1, filename2):
     sql_context = SQLContext(sc)
 
     rdd_1 = (sql_context.read.format('com.databricks.spark.csv').option("header", "true")\
-           .load("frenepublicinjection2016.csv")).rdd 
+           .load(filename1)).rdd 
     numPark_1 = rdd_1.map(lambda x: x[6])
     numPark_1 = numPark_1.filter(lambda x: x is not None).filter(lambda x: x != "")
 
     rdd_2 = (sql_context.read.format('com.databricks.spark.csv').option("header", "true")\
-           .load("frenepublicinjection2015.csv")).rdd 
+           .load(filename2)).rdd 
     numPark_2 = rdd_2.map(lambda x: x[6])
     numPark_2 = numPark_2.filter(lambda x: x is not None).filter(lambda x: x != "")
 
