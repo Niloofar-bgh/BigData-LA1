@@ -308,6 +308,7 @@ def uniq_parks_rdd(filename):
     from pyspark import SparkContext
     from pyspark import SparkConf
     from pyspark.sql import SQLContext
+    import os
 
     sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]"))
     sql_context = SQLContext(sc)
@@ -317,7 +318,7 @@ def uniq_parks_rdd(filename):
     numPark = numPark.map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
     numPark = numPark.map(lambda x: (x, '')).sortByKey().map(lambda x: x[0])
     numPark = numPark.reduce(lambda x,y: os.linesep.join([x,y]))
-    return numPark+os.linesep
+    return (numPark+os.linesep)
     raise Exception("Not implemented yet")
 
 def uniq_parks_counts_rdd(filename):
