@@ -488,7 +488,7 @@ def uniq_parks_df(filename):
     spark = SparkSession._create_shell_session()
     df = spark.read.csv(filename , header=True, mode="DROPMALFORMED")
     uniqParks = df.select("Nom_parc")
-    uniqParks = uniqParks.orderBy(desc("Nom_parc"))
+    uniqParks = uniqParks.orderBy(desc("Nom_parc")).distinct()
     uniqParks = uniqParks.where("Nom_parc != ''")
     return toCSVLine(uniqParks)
     raise Exception("Not implemented yet")
