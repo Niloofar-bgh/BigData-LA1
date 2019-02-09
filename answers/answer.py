@@ -507,7 +507,7 @@ def uniq_parks_counts_df(filename):
     from pyspark.sql import SparkSession
 
     spark = SparkSession._create_shell_session()
-    df = spark.read.csv("frenepublicinjection2016.csv", header=True, mode="DROPMALFORMED")
+    df = spark.read.csv(filename, header=True, mode="DROPMALFORMED")
     uniqParks_count = df.select("Nom_parc").where("Nom_parc != ''").orderBy("Nom_parc").groupBy("Nom_parc").count()
     return toCSVLine(uniqParks_count)
     raise Exception("Not implemented yet")
