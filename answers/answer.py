@@ -526,6 +526,13 @@ def frequent_parks_count_df(filename):
     spark = init_spark()
     
     # ADD YOUR CODE HERE
+    from pyspark.sql import SparkSession
+
+    spark = SparkSession._create_shell_session()
+    df = spark.read.csv("frenepublicinjection2016.csv", header=True, mode="DROPMALFORMED")
+    uniqParks_count = df.select("Nom_parc").where("Nom_parc != ''").orderBy("Nom_parc").groupBy("Nom_parc")\
+                        .count().sort("count",ascending = False).limit(10)
+    return toCSVLine(uniqParks_count)
     raise Exception("Not implemented yet")
 
 def intersection_df(filename1, filename2):
