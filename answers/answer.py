@@ -582,6 +582,11 @@ def count_dask(filename):
     '''
 
     # ADD YOUR CODE HERE
+    import dask.dataframe as dd
+ 
+    ddf = dd.read_csv(filename ,
+                 dtype={"No_Civiq": str, "Nom_parc": str})
+    return len(ddf)
     raise Exception("Not implemented yet")
 
 def parks_dask(filename):
