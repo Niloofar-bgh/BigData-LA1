@@ -598,6 +598,14 @@ def parks_dask(filename):
     '''
 
     # ADD YOUR CODE HERE
+    import dask.dataframe as dd
+
+    ddf = dd.read_csv(filename,
+                 dtype={"No_Civiq": str, "Nom_parc": str})
+
+    parks = ddf.Nom_parc.count().compute()
+
+    return parks
     raise Exception("Not implemented yet")
 
 def uniq_parks_dask(filename):
